@@ -16,6 +16,8 @@ class Level:
 
         self.level = []
         self.coord = {}
+        self.wall = {}
+        self.path = {}
        
 
     def grid_gen(self):
@@ -59,10 +61,19 @@ class Level:
         """ This methode will convert each cell of the grid in an element
             wall, path and positions """
         
-        for key, value in self.coord.items():
-            if value == "#":
-                value = wall
-        return wall
+        wall = {} # récupère les murs dans un sous dictionnaire
+        for key_wall, value_wall in self.coord.items():
+            if value_wall == "#":
+                wall[key_wall] = value_wall
+        self.wall = wall
+        return self.wall
+
+        path = {}  # récupère les chemins dans un sous dictionnaire
+        for key_path, value_path in self.coord.items():
+            if value_path == "-":
+                path[key_path] = value_path
+        self.path = path
+        return self.path
 
 
 level = Level()
