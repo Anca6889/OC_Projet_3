@@ -13,73 +13,26 @@ class Level:
     G = Guardian position """
 
     def __init__(self):
-
-        self.level = []
         self.coord = {}
-        self.wall = {}
-        self.path = {}
-       
+        self.path = []
 
     def grid_gen(self):
-        """Generate a virtual grid with level.txt file."""
+        """ Generate a virtual grid with level.txt file.
+            Give x and y coordonates for each cell
+            Get the all the paths in a separate list """
 
-        with open("level.txt", "r") as file:
-            content = [] #création d'une super liste "content"
+        x, y = 1, 0 # x désigne les lignes et y désigne les colonnes
+        with open("level.txt", "r") as file: 
             for line in file:  # pour chaque ligne dans le fichier
-                line_level = []  # création d'une liste pour chaque ligne
                 for element in line:  # pour chaque element dans chaque ligne
-                    if element != '\n': # sauf si changement de ligne
-                        line_level.append(element) #ajouter chaque élément aux listes individuelles de ligne
-                content.append(line_level) #ajouter chaque liste de ligne à la super liste content
-            self.level = content # enfermer cette super liste dans l'atribut self.level
-            return self.level
-        
-
-    def coord_gen(self):
-        """give x and y coordonates to each cell"""
-
-        y = 0 # désigne les coordonées des lignes
-        x = 0  # désigne les coordonées des colonnes
-        coord = {}  
-        # création d'un dictionnaire avec pour clés les coordoonées x et y 
-        # et pour valeures les éléments du fichier de chaque cellules corespondants. 
-        
-        for line in self.level:
-            y += 1 # Rajoute une valeur y pour chaque liste de ligne.
-            for element in line: 
-                x += 1  # Rajoute une valeur x pour chaque élement des lignes.
-                if x == 16: 
-                    x -= 15
-                    # METHODE BRICOLAGE !
-                    # PROBLEME AVEC CETTE METHODE EN DISCUTER AVEC KEVIN
-                coord[y,x] = element
-            self.coord = coord
-        return self.coord
-
-
-    def grid_elements(self):
-        """ This methode will convert each cell of the grid in an element
-            wall, path and positions """
-        
-        wall = {} # récupère les murs dans un sous dictionnaire
-        for key_wall, value_wall in self.coord.items():
-            if value_wall == "#":
-                wall[key_wall] = value_wall
-        self.wall = wall
-        return self.wall
-
-        path = {}  # récupère les chemins dans un sous dictionnaire
-        for key_path, value_path in self.coord.items():
-            if value_path == "-":
-                path[key_path] = value_path
-        self.path = path
-        return self.path
+                    if element != '\n': # sauf si l'élément n'est pas un retour à la ligne
+                        y = y + 1 # rajoute +1 à la valeur y pour chaque élément.
+                        self.coord[(x, y)] = element # rajoute au dico les coordonnées x et y en clé avec la valeur élément de chaque cell
+                    if element == '-': # si l'élément est un chemin
+                        self.path.append((x, y)) #rajoute à la liste des chemins les coordonnées du chemin
+                x, y = x + 1, 0 # rajoute +1 à la valeur x pour chaque ligne.
 
 
 level = Level()
 level.grid_gen()
-print(level.grid_gen())
-level.coord_gen()
-print(level.coord_gen())
-level.grid_elements()
-print(level.grid_elements())
+print("\n\nlevel : \n\n", level.coord, "\n\npath : \n\n", level.path)
