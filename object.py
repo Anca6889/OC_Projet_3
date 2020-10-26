@@ -12,7 +12,7 @@ class Object:
     def __init__(self, name):
         self.name = name
         self.position = [random.choice(level.path)]
-        
+        # ne trouve pas comment faire pour ne pas avoir deux fois la même clé
         
     def get_position(self):
         return self.position
