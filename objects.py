@@ -3,26 +3,24 @@
 import random
 from level import level
 
-class Object:
-    """ Class creating the objects needle, ether, syringe
+class Objects:
+    """ Class creating the objectss needle, ether, syringe
         with following attributes:
             name
             position on the map """
 
     def __init__(self, name):
         self.name = name
-        self.position = [random.choice(level.path)]
+        self.position = random.choice(level.path)
         # ne trouve pas comment faire pour ne pas avoir deux fois la même clé
         
     def get_position(self):
         return self.position
 
-ether = Object("ether")
-needle = Object("needle")
-syringe = Object("syringe")
-ether.get_position()
-needle.get_position()
-syringe.get_position()
+ether = Objects("ether")
+needle = Objects("needle")
+syringe = Objects("syringe")
+
 print("\n\nether position : \n\n", ether.get_position(),
       "\n\nneedle position : \n\n", needle.get_position(), 
       "\n\nsyringe position : \n\n", syringe.get_position())
