@@ -50,15 +50,17 @@ class Player:
                     elif player_newposition == ether.position:
                         inventory.stock.append(ether.name)
                         print("player a rammassé l'éther")
-                        
+                        # ether.destroy
 
                     elif player_newposition == needle.position:
                         inventory.stock.append(needle.name)
                         print("player a rammassé l'aguille")
+                        # needle.destroy
 
                     elif player_newposition == syringe.position:
                         inventory.stock.append(syringe.name)
                         print("player a rammassé la sereingue")
+                        # syringe.destroy
 
         else:
             player_newposition = self.player_position[0], self.player_position[1]
@@ -82,14 +84,17 @@ class Player:
                     elif player_newposition == ether.position:
                         inventory.stock.append(ether.name)
                         print("player a rammassé l'éther")
+                        # ether.destroy
 
                     elif player_newposition == needle.position:
                         inventory.stock.append(needle.name)
                         print("player a rammassé l'aguille")
+                        # needle.destroy
 
                     elif player_newposition == syringe.position:
                         inventory.stock.append(syringe.name)
                         print("player a rammassé la sereingue")
+                        # syringe.destroy
 
         else:
             player_newposition = self.player_position[0], self.player_position[1]
@@ -113,14 +118,17 @@ class Player:
                     elif player_newposition == ether.position:
                         inventory.stock.append(ether.name)
                         print("player a rammassé l'éther")
+                        # ether.destroy
 
                     elif player_newposition == needle.position:
                         inventory.stock.append(needle.name)
                         print("player a rammassé l'aguille")
-                        
+                        # needle.destroy
+
                     elif player_newposition == syringe.position:
                         inventory.stock.append(syringe.name)
                         print("player a rammassé la sereingue")
+                        # syringe.destroy
 
         else:
             player_newposition = self.player_position[0], self.player_position[1]
@@ -144,14 +152,16 @@ class Player:
                     elif player_newposition == ether.position:
                         inventory.stock.append(ether.name)
                         print("player a rammassé l'éther")
+                        # ether.destroy
 
                     elif player_newposition == needle.position:
                         inventory.stock.append(needle.name)
                         print("player a rammassé l'aguille")
-
+                        # needle.destroy
                     elif player_newposition == syringe.position:
                         inventory.stock.append(syringe.name)
                         print("player a rammassé la sereingue")
+                        # syringe.destroy
 
         else:
             player_newposition = self.player_position[0], self.player_position[1]

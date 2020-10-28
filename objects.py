@@ -17,6 +17,10 @@ class Objects:
     def get_position(self):
         return self.position
 
+    # def destroy(self):
+    #     self.destroy = pop(self.position)
+
+
 ether = Objects("ether")
 needle = Objects("needle")
 syringe = Objects("syringe")
