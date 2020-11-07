@@ -10,11 +10,8 @@ class Guardian:
         
         """
 
-        def __init__(self, size, position):
+    def __init__(self, name, y, x):
            
-            self.size = size
-            self.position = position
-
-
- 
+        self.name = name
+        self.guardian_position = (y, x)
     
