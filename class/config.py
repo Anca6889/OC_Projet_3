@@ -1,0 +1,5 @@
+OBJECTS = [
+	"ether",
+	"tube",
+	"needle"
+]

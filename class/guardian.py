@@ -14,4 +14,3 @@ class Guardian:
            
         self.name = name
         self.guardian_position = (y, x)
-    
