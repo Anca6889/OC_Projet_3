@@ -4,7 +4,6 @@
 import random
 from player import Player
 from guardian import Guardian
-from inventory import Inventory
 from config import OBJECTS
 
 
@@ -74,8 +73,8 @@ class Level:
             if new_cell_content == '-':
                 # on bouge macgyver aux nouvelles coordonnées,
                 # et on remplace les anciennes par un chemin
-                self.path[(self.macgyver.coo_y, self.macgyver.coo_x)] = "-"
-                self.path[new_coo] = 'M'
+                self.coord[(self.macgyver.coo_y, self.macgyver.coo_x)] = "-"
+                self.coord[new_coo] = 'M'
                 # MAJ coo macgyver dans l'objet
                 self.macgyver.coo_y = new_coo[0]
                 self.macgyver.coo_x = new_coo[1]
@@ -84,10 +83,10 @@ class Level:
             if new_cell_content in OBJECTS:
                 # on bouge macgyver aux nouvelles coordonnées,
                 # et on remplace les anciennes par un chemin
-                self.path[(self.macgyver.coo_y, self.macgyver.coo_x)] = "-"
+                self.coord[(self.macgyver.coo_y, self.macgyver.coo_x)] = "-"
                 # on ramasse l'objet
                 self.inventory.append(new_cell_content)
-                self.path[new_coo] = 'M'
+                self.coord[new_coo] = 'M'
                 # MAJ coo macgyver dans l'objet
                 self.macgyver.coo_y = new_coo[0]
                 self.macgyver.coo_x = new_coo[1]
@@ -97,8 +96,8 @@ class Level:
                 # on bouge macgyver aux nouvelles coordonnées,
                 # et on remplace les anciennes par un chemin
                 if self.inventory.count() == 3:
-                    self.path[(self.macgyver.coo_y, self.macgyver.coo_x)] = "-"
-                    self.path[new_coo] = '0'
+                    self.coord[(self.macgyver.coo_y, self.macgyver.coo_x)] = "-"
+                    self.coord[new_coo] = '0'
                     # MAJ coo macgyver dans l'objet
                     self.macgyver.coo_y = new_coo[0]
                     self.macgyver.coo_x = new_coo[1]
@@ -114,109 +113,100 @@ class Level:
 if __name__ == "__main__":
 
     level = Level()
-    print(level.move("right"))
-    print(level.print_grid())
     
-    # print("\n\nlevel : \n\n", level.coord, "\n\npath : \n\n",
-    # #       level.path, "\n\nwalls : \n\n", level.walls)
+    # level.move("left")
+    level.move("right")
+    level.move("right")
 
-    # print("\n start position: ", macgyver.player_position, "\n")
+    level.move("down")
+    level.move("down")
+    level.move("down")
 
-    # print("place objects: ", level.place_objects(),"\n")
+    level.move("right")
+    level.move("right")
 
-    # print("new position: ", level.moove_on_map(), macgyver.moove("left"), "\n")
-    # print("new position: ", level.moove_on_map(), macgyver.moove("right"), "\n")
-    # print("new position: ", level.moove_on_map(), macgyver.moove("right"), "\n")
+    level.move("up")
+    level.move("up")
+    level.move("up")
 
-    # print("new position: ", level.moove_on_map(), macgyver.moove("down"), "\n")
-    # print("new position: ", level.moove_on_map(), macgyver.moove("down"), "\n")
-    # print("new position: ", level.moove_on_map(), macgyver.moove("down"), "\n")
+    level.move("right")
+    level.move("right")
+    level.move("right")
+    level.move("right")
+    level.move("right")
 
-    # print("new position: ", level.moove_on_map(), macgyver.moove("right"), "\n")
-    # print("new position: ", level.moove_on_map(), macgyver.moove("right"), "\n")
+    level.move("down")
+    level.move("down")
 
-    # print("new position: ", level.moove_on_map(), macgyver.moove("up"), "\n")
-    # print("new position: ", level.moove_on_map(), macgyver.moove("up"), "\n")
-    # print("new position: ", level.moove_on_map(), macgyver.moove("up"), "\n")
+    level.move("left")
+    level.move("left")
+    level.move("left")
 
-    # print("new position: ", level.moove_on_map(), macgyver.moove("right"), "\n")
-    # print("new position: ", level.moove_on_map(), macgyver.moove("right"), "\n")
-    # print("new position: ", level.moove_on_map(), macgyver.moove("right"), "\n")
-    # print("new position: ", level.moove_on_map(), macgyver.moove("right"), "\n")
-    # print("new position: ", level.moove_on_map(), macgyver.moove("right"), "\n")
-    # print("new position: ", level.moove_on_map(), macgyver.moove("right"), "\n")
+    level.move("right")
+    level.move("right")
+    level.move("right")
 
-    # print("new position: ", level.moove_on_map(), macgyver.moove("down"), "\n")
-    # print("new position: ", level.moove_on_map(), macgyver.moove("down"), "\n")
+    level.move("up")
+    level.move("up")
 
-    # print("new position: ", level.moove_on_map(), macgyver.moove("left"), "\n")
-    # print("new position: ", level.moove_on_map(), macgyver.moove("left"), "\n")
-    # print("new position: ", level.moove_on_map(), macgyver.moove("left"), "\n")
+    level.move("right")
+    level.move("right")
+    level.move("right")
+    level.move("right")
+    level.move("right")
+    level.move("right")
 
-    # print("new position: ", level.moove_on_map(), macgyver.moove("right"), "\n")
-    # print("new position: ", level.moove_on_map(), macgyver.moove("right"), "\n")
-    # print("new position: ", level.moove_on_map(), macgyver.moove("right"), "\n")
+    level.move("down")
+    level.move("down")
 
-    # print("new position: ", level.moove_on_map(), macgyver.moove("up"), "\n")
-    # print("new position: ", level.moove_on_map(), macgyver.moove("up"), "\n")
+    level.move("left")
+    level.move("left")
+    level.move("left")
+    level.move("left")
 
-    # print("new position: ", level.moove_on_map(), macgyver.moove("right"), "\n")
-    # print("new position: ", level.moove_on_map(), macgyver.moove("right"), "\n")
-    # print("new position: ", level.moove_on_map(), macgyver.moove("right"), "\n")
-    # print("new position: ", level.moove_on_map(), macgyver.moove("right"), "\n")
-    # print("new position: ", level.moove_on_map(), macgyver.moove("right"), "\n")
-    # print("new position: ", level.moove_on_map(), macgyver.moove("right"), "\n")
+    level.move("right")
+    level.move("right")
+    level.move("right")
+    level.move("right")
 
-    # print("new position: ", level.moove_on_map(), macgyver.moove("down"), "\n")
-    # print("new position: ", level.moove_on_map(), macgyver.moove("down"), "\n")
+    level.move("down")
 
-    # print("new position: ", level.moove_on_map(), macgyver.moove("left"), "\n")
-    # print("new position: ", level.moove_on_map(), macgyver.moove("left"), "\n")
-    # print("new position: ", level.moove_on_map(), macgyver.moove("left"), "\n")
-    # print("new position: ", level.moove_on_map(), macgyver.moove("left"), "\n")
+    level.move("left")
 
-    # print("new position: ", level.moove_on_map(), macgyver.moove("right"), "\n")
-    # print("new position: ", level.moove_on_map(), macgyver.moove("right"), "\n")
-    # print("new position: ", level.moove_on_map(), macgyver.moove("right"), "\n")
-    # print("new position: ", level.moove_on_map(), macgyver.moove("right"), "\n")
+    level.move("down")
+    level.move("down")
+    level.move("down")
 
-    # print("new position: ", level.moove_on_map(), macgyver.moove("down"), "\n")
+    level.move("left")
+    level.move("left")
+    level.move("left")
+    level.move("left")
+    level.move("left")
+    level.move("left")
 
-    # print("new position: ", level.moove_on_map(), macgyver.moove("left"), "\n")
+    level.move("up")
+    level.move("up")
 
-    # print("new position: ", level.moove_on_map(), macgyver.moove("down"), "\n")
-    # print("new position: ", level.moove_on_map(), macgyver.moove("down"), "\n")
-    # print("new position: ", level.moove_on_map(), macgyver.moove("down"), "\n")
+    level.move("right")
+    level.move("right")
+    level.move("right")
+    level.move("right")
 
-    # print("new position: ", level.moove_on_map(), macgyver.moove("left"), "\n")
-    # print("new position: ", level.moove_on_map(), macgyver.moove("left"), "\n")
-    # print("new position: ", level.moove_on_map(), macgyver.moove("left"), "\n")
-    # print("new position: ", level.moove_on_map(), macgyver.moove("left"), "\n")
-    # print("new position: ", level.moove_on_map(), macgyver.moove("left"), "\n")
-    # print("new position: ", level.moove_on_map(), macgyver.moove("left"), "\n")
+    level.move("left")
+    level.move("left")
+    level.move("left")
+    level.move("left")
 
-    # print("new position: ", level.moove_on_map(), macgyver.moove("up"), "\n")
-    # print("new position: ", level.moove_on_map(), macgyver.moove("up"), "\n")
+    level.move("down")
+    level.move("down")
 
-    # print("new position: ", level.moove_on_map(), macgyver.moove("right"), "\n")
-    # print("new position: ", level.moove_on_map(), macgyver.moove("right"), "\n")
-    # print("new position: ", level.moove_on_map(), macgyver.moove("right"), "\n")
-    # print("new position: ", level.moove_on_map(), macgyver.moove("right"), "\n")
+    level.move("left")
+    level.move("left")
+    level.move("left")
+    level.move("left")
+    level.move("left")
+    level.move("left")
 
-    # print("new position: ", level.moove_on_map(), macgyver.moove("left"), "\n")
-    # print("new position: ", level.moove_on_map(), macgyver.moove("left"), "\n")
-    # print("new position: ", level.moove_on_map(), macgyver.moove("left"), "\n")
-    # print("new position: ", level.moove_on_map(), macgyver.moove("left"), "\n")
+    print(level.print_grid())
 
-    # print("new position: ", level.moove_on_map(), macgyver.moove("down"), "\n")
-    # print("new position: ", level.moove_on_map(), macgyver.moove("down"), "\n")
-
-    # print("new position: ", level.moove_on_map(), macgyver.moove("left"), "\n")
-    # print("new position: ", level.moove_on_map(), macgyver.moove("left"), "\n")
-    # print("new position: ", level.moove_on_map(), macgyver.moove("left"), "\n")
-    # print("new position: ", level.moove_on_map(), macgyver.moove("left"), "\n")
-    # print("new position: ", level.moove_on_map(), macgyver.moove("left"), "\n")
-    # print("new position: ", level.moove_on_map(), macgyver.moove("left"), "\n")
-
-    # print(level.print_grid())
-    # print(inventory.stock)
+    print(level.inventory)
