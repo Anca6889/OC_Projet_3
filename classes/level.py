@@ -2,9 +2,9 @@
 # coding: utf-8
 
 import random
-from player import Player
-from guardian import Guardian
-from config import OBJECTS
+from classes.player import Player
+from classes.guardian import Guardian
+from classes.config import OBJECTS
 
 
 class Level:
@@ -27,11 +27,10 @@ class Level:
         self.inventory = []
         self.grid_gen()
         self.set_objects()
-       
-
+        
     def grid_gen(self):
-        y, x = 1, 0  # y désigne les lignes et x désigne les colonnes
-        with open("level.txt", "r") as file:
+        y, x = 0, 0  # y désigne les lignes et x désigne les colonnes
+        with open("ressource/level.txt", "r") as file:
             for line in file:  # pour chaque ligne dans le fichier
                 for element in line:  # pour chaque element dans chaque ligne
                     if element != '\n':  # sauf si l'élément n'est pas un retour à la ligne
@@ -66,7 +65,7 @@ class Level:
 
         # est-ce qu'on peut bouger ?
         # est-ce que les coordonnées existent ?
-        if self.coord[new_coo]:
+        if new_coo in self.coord:
             # récupération du contenu de la case
             new_cell_content = self.coord[new_coo]
             # on peut bouger si : new_cell_content est un chemin
@@ -95,12 +94,36 @@ class Level:
             if new_cell_content == 'G':
                 # on bouge macgyver aux nouvelles coordonnées,
                 # et on remplace les anciennes par un chemin
-                if self.inventory.count() == 3:
+                if len(self.inventory) == 3:
                     self.coord[(self.macgyver.coo_y, self.macgyver.coo_x)] = "-"
-                    self.coord[new_coo] = '0'
+                    self.coord[new_coo] = 'M'
                     # MAJ coo macgyver dans l'objet
                     self.macgyver.coo_y = new_coo[0]
                     self.macgyver.coo_x = new_coo[1]
+                else:
+                    self.loose_game()
+
+            if new_cell_content == '1':
+                # on bouge macgyver aux nouvelles coordonnées,
+                # et on remplace les anciennes par un chemin
+                self.coord[(self.macgyver.coo_y, self.macgyver.coo_x)] = "-"
+                self.coord[new_coo] = 'M'
+                # MAJ coo macgyver dans l'objet
+                self.macgyver.coo_y = new_coo[0]
+                self.macgyver.coo_x = new_coo[1]
+                self.win_game()
+        else: # si les coordonnées n'existent pas (hors-jeu), ne rien faire.
+            pass
+
+    def win_game(self):
+        print("Vous avez gagné !")
+        # quit()
+        
+
+    def loose_game(self):
+        print("Vous avez perdu !")
+        # quit()
+    
 
     def print_grid(self):  # print la grille self.coord de manière représentative sur 15x15
         count = 0
@@ -114,7 +137,6 @@ if __name__ == "__main__":
 
     level = Level()
     
-    # level.move("left")
     level.move("right")
     level.move("right")
 
@@ -206,6 +228,40 @@ if __name__ == "__main__":
     level.move("left")
     level.move("left")
     level.move("left")
+
+    level.move("down")
+    level.move("down")
+
+    level.move("left")
+
+    level.move("down")
+    level.move("down")
+    level.move("down")
+    level.move("down")
+
+    level.move("right")
+    level.move("right")
+    level.move("right")
+    level.move("right")
+    level.move("right")
+    level.move("right")
+    level.move("right")
+    level.move("right")
+    level.move("right")
+    level.move("right")
+    level.move("right")
+    level.move("right")
+    level.move("right")
+
+    level.move("up")
+
+    level.move("right")
+    level.move("right")
+
+    level.move("down")
+    level.move("down")
+    level.move("down")
+
 
     print(level.print_grid())
 

@@ -1,0 +1,12 @@
+
+macgyver_dis = "ressource/MacGyver.png"
+guardian_dis = "ressource/Gardien.png"
+path_dis = "ressource/path.png"
+walls_dis = "ressource/walls.png"
+ether_dis = "ressource/smallether.png"
+needle_dis = "ressource/smallaiguille.png"
+tube_dis = "ressource/smalltube_plastique.png"
+door_dis = "ressource/door.png"
+inventory_dis = "ressource/inventory.png"
+syringe_dis = "ressource/syringe.png"
+star_dis = "ressource/star.png"
