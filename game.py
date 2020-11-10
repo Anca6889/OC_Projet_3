@@ -2,46 +2,82 @@
 # coding: utf-8
 
 import pygame
+from main_menu import Main_menu
 from classes.level import Level
 from display.inventory_display import InventoryDisplay
 from display.level_display import LevelDisplay
+
 
 pygame.init()
 
 # Creating the display 600x600 pixels
 res = (640, 600)
 pygame.display.set_caption("Help Macgyver to escape")
-screen = pygame.display.set_mode(res, pygame.RESIZABLE)
+screen = pygame.display.set_mode(res)
+
 
 level = Level()
+main_menu_dis = Main_menu()
 level_dis = LevelDisplay()
 inventory_dis = InventoryDisplay()
 
 
+#creating a for loop to keep the game game_running
+game_running = False
+main_menu_running = True
+s
+while main_menu_running:
 
-#creating a for loop to keep the game running
-running = True
-while running:
+    screen.blit(main_menu_dis.background, (0, 0))
+    screen.blit(main_menu_dis.play_button,(main_menu_dis.play_button_rect))
+    screen.blit(main_menu_dis.title_text_surface,(main_menu_dis.title_text_rect))
+    screen.blit(main_menu_dis.descript_text_surface, (main_menu_dis.descript_text_rect))
+    screen.blit(main_menu_dis.click_text_surface,(main_menu_dis.click_text_rect))
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            main_menu_running = False
+            pygame.quit()
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+            if main_menu_dis.play_button_rect.collidepoint(event.pos):
+                main_menu_running = False
+                game_running = True
+
+    pygame.display.flip()
+
+while game_running:
+
     screen.blit(inventory_dis.inventory, (0,0))
+    screen.blit(inventory_dis.ethertrans, (0, 310))
+    screen.blit(inventory_dis.needletrans, (0,370))
+    screen.blit(inventory_dis.tubetrans, (0, 430))
+    screen.blit(inventory_dis.startrans, (0, 540))
 
     for key, val in level.coord.items():
         
+
         if val == "M":
+            screen.blit(level_dis.path, (key[1] * 40, key[0] * 40))
             screen.blit(level_dis.macgyver, (key[1] * 40, key[0] * 40))
         if val == "#":
             screen.blit(level_dis.walls, (key[1] * 40 , key[0] * 40))
         if val == "-":
             screen.blit(level_dis.path, (key[1] * 40, key[0] * 40))
         if val == "ether" :
+            screen.blit(level_dis.path, (key[1] * 40, key[0] * 40))
             screen.blit(level_dis.ether, (key[1] * 40, key[0] * 40))
         if val == "needle":
+            screen.blit(level_dis.path, (key[1] * 40, key[0] * 40))
             screen.blit(level_dis.needle, (key[1] * 40, key[0] * 40))
         if val == "tube":
+            screen.blit(level_dis.path, (key[1] * 40, key[0] * 40))
             screen.blit(level_dis.tube, (key[1] * 40, key[0] * 40))
         if val == "G":
+            screen.blit(level_dis.path, (key[1] * 40, key[0] * 40))
             screen.blit(level_dis.guardian, (key[1] * 40, key[0] * 40))
         if val == "1":
+            screen.blit(level_dis.path, (key[1] * 40, key[0] * 40))
             screen.blit(level_dis.door, (key[1] * 40, key[0] * 40))
+
 
     if "ether"in level.inventory:
         screen.blit(level_dis.ether, (0, 310))
@@ -53,11 +89,10 @@ while running:
         screen.blit(inventory_dis.star, (0, 540))
         screen.blit(inventory_dis.syringe, (0, 540))
 
-    pygame.display.flip()
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            running = False
+            game_running = False
             pygame.quit()
 
         elif event.type == pygame.KEYDOWN:
@@ -77,5 +112,12 @@ while running:
                 level.move("down")
                 # macgyver.move("down")
                 print("mouvement à bas")
+
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+            if main_menu.play_button_rect.collidepoint(event.pos):
+                game_running = True
+
+
+    pygame.display.flip()
         
 
