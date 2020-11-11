@@ -1,3 +1,7 @@
+#! /usr/bin/env pxthon3
+# coding: utf-8
+
+""" This file contain all the paths for setting up the display"""
 
 macgyver_dis = "ressource/MacGyver.png"
 guardian_dis = "ressource/Gardien.png"

@@ -20,9 +20,13 @@ class LevelDisplay(pygame.sprite.Sprite):
         self.walls = pygame.image.load(walls_dis).convert_alpha()
         self.path = pygame.image.load(path_dis).convert_alpha()
         self.ether = pygame.image.load(ether_dis).convert_alpha()
+        self.ether_rect = self.ether.get_rect()
         self.needle = pygame.image.load(needle_dis).convert_alpha()
+        self.needle_rect = self.needle.get_rect()
         self.tube = pygame.image.load(tube_dis).convert_alpha()
+        self.tuber_rect = self.tube.get_rect()
         self.guardian = pygame.image.load(guardian_dis).convert_alpha()
         self.macgyver = pygame.image.load(macgyver_dis).convert_alpha()
+        self.macgyver_rect = self.macgyver.get_rect()
         self.door = pygame.image.load(door_dis).convert_alpha()
         
