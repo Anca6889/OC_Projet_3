@@ -2,7 +2,7 @@
 # coding: utf-8
 
 import pygame
-from main_menu import Main_menu
+from display.main_menu import Main_menu
 from classes.level import Level
 from display.inventory_display import InventoryDisplay
 from display.level_display import LevelDisplay
@@ -25,7 +25,6 @@ inventory_dis = InventoryDisplay()
 #creating a for loop to keep the game game_running
 game_running = False
 main_menu_running = True
-s
 while main_menu_running:
 
     screen.blit(main_menu_dis.background, (0, 0))
