@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
 # coding: utf-8
-
-# if __name__ == "__main__":
+import pygame
+from game import launch_game
     
-
+launch_game()

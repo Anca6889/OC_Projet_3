@@ -12,6 +12,8 @@ from display.config_display import tube_dis
 from display.config_display import guardian_dis
 from display.config_display import door_dis
 
+
+
 class LevelDisplay(pygame.sprite.Sprite):
 
     def __init__(self):
@@ -28,5 +30,6 @@ class LevelDisplay(pygame.sprite.Sprite):
         self.guardian = pygame.image.load(guardian_dis).convert_alpha()
         self.macgyver = pygame.image.load(macgyver_dis).convert_alpha()
         self.macgyver_rect = self.macgyver.get_rect()
-        self.door = pygame.image.load(door_dis).convert_alpha()
+        self.door = pygame.image.load(door_dis).convert_alpha()       
+        
         

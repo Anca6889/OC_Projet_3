@@ -27,6 +27,8 @@ class Level:
         self.inventory = []
         self.grid_gen()
         self.set_objects()
+        self.gamewined = False
+        self.gamelost = False
         
     def grid_gen(self):
         y, x = 0, 0  # y désigne les lignes et x désigne les colonnes
@@ -52,6 +54,7 @@ class Level:
         for key, obj in enumerate(OBJECTS):
             self.coord[self.path[key]] = obj
 
+    
     def move(self, direction):
         # récupération des nouvelles coordonnées
         if direction == "right":
@@ -116,14 +119,13 @@ class Level:
             pass
 
     def win_game(self):
+        self.gamewined = True
         print("Vous avez gagné !")
-        # quit()
-        
 
     def loose_game(self):
+        self.gamelost = True
         print("Vous avez perdu !")
-        # quit()
-    
+
 
     def print_grid(self):  # print la grille self.coord de manière représentative sur 15x15
         count = 0

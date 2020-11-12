@@ -23,3 +23,7 @@ startrans_dis = "ressource/startrans.png"
 
 background_dis = "ressource/wallpaper.jpg"
 play_dis = "ressource/play_button.png"
+
+gameover_dis = "ressource/gameover.png"
+tryagain_dis = "ressource/tryagain.png"
+youwin_dis = "ressource/youwin.png"
