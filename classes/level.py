@@ -4,19 +4,21 @@
 import random
 from classes.player import Player
 from classes.guardian import Guardian
-from classes.config import OBJECTS
+from classes.config_classes import OBJECTS
 
 
 class Level:
 
-    """Class setting up the level map 15x15 cells,
-    Draw of the level is on level.txt file with following parameters:
+    """ Class setting up the level map 15x15 cells, spawning the objects on
+        random position and managing the movements of the player
+        draw of the level is on level.txt file with following parameters:
 
-    # = Wall
-    - = Path
-    M = Macgyver position
-    1 = End
-    G = Guardian position """
+        # = Wall
+        - = Path
+        M = Macgyver position
+        1 = End
+        G = Guardian position
+        """
 
     def __init__(self):
 
@@ -29,34 +31,44 @@ class Level:
         self.set_objects()
         self.gamewined = False
         self.gamelost = False
-        
+        self.pickobject = False
+        self.killgardian = False
+
     def grid_gen(self):
-        y, x = 0, 0  # y désigne les lignes et x désigne les colonnes
+        """ Generate a virtual grid with x and y coordonates
+            and stock them in a dictionary.
+            Create the guardian and the player objects
+            isolate the coordonates of the paths
+            """
+
+        y, x = 0, 0
         with open("ressource/level.txt", "r") as file:
-            for line in file:  # pour chaque ligne dans le fichier
-                for element in line:  # pour chaque element dans chaque ligne
-                    if element != '\n':  # sauf si l'élément n'est pas un retour à la ligne
-                        # rajoute +1 à la valeur x pour chaque élément.
+            for line in file:
+                for element in line:
+                    if element != '\n':
                         x = x + 1
-                        # rajoute au dico les coordonnées y et x en clé avec la valeur élément de chaque cell
                         self.coord[(y, x)] = element
-                    if element == '-':  # si l'élément est un chemin
-                        # rajoute à la liste des chemins les coordonnées du chemin
+                    if element == '-':
                         self.path.append((y, x))
                     if element == 'M':
                         self.macgyver = Player("macgyver", y, x)
                     if element == 'G':
                         self.guardian = Guardian("guardian", y, x)
-                y, x = y + 1, 0  # rajoute +1 à la valeur y pour chaque ligne.
+                y, x = y + 1, 0
 
     def set_objects(self):
+        """ Spawn the objects to random positions on the paths """
+
         random.shuffle(self.path)
         for key, obj in enumerate(OBJECTS):
             self.coord[self.path[key]] = obj
 
-    
     def move(self, direction):
-        # récupération des nouvelles coordonnées
+        """ Control the movements of the player on the map
+            check what each cell contain and alow or not
+            the player to moove, pick object, pass or not
+            the guardian, win or loose the game """
+
         if direction == "right":
             new_coo = (self.macgyver.coo_y, self.macgyver.coo_x+1)
         if direction == "left":
@@ -66,72 +78,52 @@ class Level:
         if direction == "down":
             new_coo = (self.macgyver.coo_y+1, self.macgyver.coo_x)
 
-        # est-ce qu'on peut bouger ?
-        # est-ce que les coordonnées existent ?
         if new_coo in self.coord:
-            # récupération du contenu de la case
             new_cell_content = self.coord[new_coo]
-            # on peut bouger si : new_cell_content est un chemin
+
             if new_cell_content == '-':
-                # on bouge macgyver aux nouvelles coordonnées,
-                # et on remplace les anciennes par un chemin
                 self.coord[(self.macgyver.coo_y, self.macgyver.coo_x)] = "-"
                 self.coord[new_coo] = 'M'
-                # MAJ coo macgyver dans l'objet
                 self.macgyver.coo_y = new_coo[0]
                 self.macgyver.coo_x = new_coo[1]
+                self.pickobject = False
 
-            # on peut bouger si : new_cell_content est un objet
             if new_cell_content in OBJECTS:
-                # on bouge macgyver aux nouvelles coordonnées,
-                # et on remplace les anciennes par un chemin
                 self.coord[(self.macgyver.coo_y, self.macgyver.coo_x)] = "-"
-                # on ramasse l'objet
                 self.inventory.append(new_cell_content)
                 self.coord[new_coo] = 'M'
-                # MAJ coo macgyver dans l'objet
                 self.macgyver.coo_y = new_coo[0]
                 self.macgyver.coo_x = new_coo[1]
+                self.pickobject = True
 
-            # on peut bouger si : new_cell_content est le gardien et qu'on a tous les objets
             if new_cell_content == 'G':
-                # on bouge macgyver aux nouvelles coordonnées,
-                # et on remplace les anciennes par un chemin
                 if len(self.inventory) == 3:
-                    self.coord[(self.macgyver.coo_y, self.macgyver.coo_x)] = "-"
+                    self.coord[(self.macgyver.coo_y,
+                                self.macgyver.coo_x)] = "-"
                     self.coord[new_coo] = 'M'
-                    # MAJ coo macgyver dans l'objet
                     self.macgyver.coo_y = new_coo[0]
                     self.macgyver.coo_x = new_coo[1]
+                    self.pickobject = False
+                    self.killgardian = True
                 else:
-                    self.loose_game()
+                    self.lose_game()
 
             if new_cell_content == '1':
-                # on bouge macgyver aux nouvelles coordonnées,
-                # et on remplace les anciennes par un chemin
                 self.coord[(self.macgyver.coo_y, self.macgyver.coo_x)] = "-"
                 self.coord[new_coo] = 'M'
-                # MAJ coo macgyver dans l'objet
                 self.macgyver.coo_y = new_coo[0]
                 self.macgyver.coo_x = new_coo[1]
+                self.pickobject = False
                 self.win_game()
-        else: # si les coordonnées n'existent pas (hors-jeu), ne rien faire.
+        else:
             pass
 
     def win_game(self):
+        """ Win the game """
+
         self.gamewined = True
-        print("Vous avez gagné !")
 
-    def loose_game(self):
+    def lose_game(self):
+        """ Lose the game """
+
         self.gamelost = True
-        print("Vous avez perdu !")
-
-
-    def print_grid(self):  # print la grille self.coord de manière représentative sur 15x15
-        count = 0
-        for val in self.coord.values():
-            print(val, end='')  # end = '' permet de print sur une seule ligne
-            count = count + 1
-            if count % 15 == 0:
-                print("\n")
-
