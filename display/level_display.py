@@ -6,6 +6,7 @@ import pygame
 
 
 class LevelDisplay(pygame.sprite.Sprite):
+    """ This class setup the level display """
 
     def __init__(self):
 

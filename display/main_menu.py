@@ -6,6 +6,7 @@ import pygame
 
 
 class Main_menu(pygame.sprite.Sprite):
+    """ This class setup the main menu display when game is lauched """
 
     def __init__(self):
 

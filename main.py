@@ -3,6 +3,6 @@
 
 from game.game import Game
 
-""" Launch the app """
+""" This module launch the app """
 
 main = Game()

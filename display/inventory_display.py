@@ -6,6 +6,7 @@ import pygame
 
 
 class InventoryDisplay(pygame.sprite.Sprite):
+    """ This class setup the inventory display """
 
     def __init__(self):
 

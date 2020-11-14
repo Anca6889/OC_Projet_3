@@ -5,6 +5,8 @@ from audio import config_audio
 
 
 class Audio:
+    """ this class set up the audio of the game """
+
     def __init__(self):
 
         super().__init__()

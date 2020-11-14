@@ -8,7 +8,6 @@ from classes.config_classes import OBJECTS
 
 
 class Level:
-
     """ Class setting up the level map 15x15 cells, spawning the objects on
         random position and managing the movements of the player
         draw of the level is on level.txt file with following parameters:
@@ -35,26 +34,26 @@ class Level:
         self.killgardian = False
 
     def grid_gen(self):
-        """ Generate a virtual grid with x and y coordonates
+        """ Generate a virtual grid with map_x and map_y coordonates
             and stock them in a dictionary.
             Create the guardian and the player objects
             isolate the coordonates of the paths
             """
 
-        y, x = 0, 0
+        map_y, map_x = 0, 0
         with open("ressource/level.txt", "r") as file:
             for line in file:
                 for element in line:
                     if element != '\n':
-                        x = x + 1
-                        self.coord[(y, x)] = element
+                        map_x = map_x + 1
+                        self.coord[(map_y, map_x)] = element
                     if element == '-':
-                        self.path.append((y, x))
+                        self.path.append((map_y, map_x))
                     if element == 'M':
-                        self.macgyver = Player("macgyver", y, x)
+                        self.macgyver = Player("macgyver", map_y, map_x)
                     if element == 'G':
-                        self.guardian = Guardian("guardian", y, x)
-                y, x = y + 1, 0
+                        self.guardian = Guardian("guardian", map_y, map_x)
+                map_y, map_x = map_y + 1, 0
 
     def set_objects(self):
         """ Spawn the objects to random positions on the paths """
@@ -69,6 +68,7 @@ class Level:
             the player to moove, pick object, pass or not
             the guardian, win or loose the game """
 
+        # Move the player:
         if direction == "right":
             new_coo = (self.macgyver.coo_y, self.macgyver.coo_x+1)
         if direction == "left":
@@ -78,6 +78,9 @@ class Level:
         if direction == "down":
             new_coo = (self.macgyver.coo_y+1, self.macgyver.coo_x)
 
+        # check what cell contain :
+        # (the variables self.pickobject and self.killguardian are
+        # used for play a sound in the main game)
         if new_coo in self.coord:
             new_cell_content = self.coord[new_coo]
 
@@ -105,6 +108,7 @@ class Level:
                     self.macgyver.coo_x = new_coo[1]
                     self.pickobject = False
                     self.killgardian = True
+
                 else:
                     self.lose_game()
 

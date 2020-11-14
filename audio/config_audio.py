@@ -1,10 +1,10 @@
 #! /usr/bin/env pxthon3
 # coding: utf-8
 
-""" This file contain all the paths for setting up the music of the game"""
+""" This file contain all the constants for the audio of the game"""
 
 MENU_MUSIC = "ressource/1-02 Title.mp3"
-LEVEL_MUSIC = "RESSOURCE/1-23 DR. WILY STAGE.MP3"
+LEVEL_MUSIC = "ressource/1-13 Tundra Man Stage.mp3"
 PICK_UP_SOUND = "ressource/pickup.wav"
 ALLOBJECTS_SOUND = "ressource/3objects.wav"
 PUNCH_SOUND = "ressource/punch.mp3"
