@@ -11,6 +11,8 @@ from audio.audio import Audio
 from game import config_game
 import pygame
 
+""" This module run the all game """
+
 
 class Game:
 
@@ -28,7 +30,7 @@ class Game:
         self.launch_game()
 
     def launch_game(self):
-        """ Method running the game """
+        """ This method will lauch the game and setup the main_menu"""
 
         pygame.init()
 
@@ -37,24 +39,14 @@ class Game:
         screen = pygame.display.set_mode(config_game.RES)
 
         # Instancy all the necessaries classes :
-        level = Level()
         main_menu_dis = Main_menu()
-        level_dis = LevelDisplay()
-        inventory_dis = InventoryDisplay()
-        gameover_dis = GameOver()
-        win_dis = Win()
         audio = Audio()
+        main_menu_running = True
 
         # Initialise main menu music:
         pygame.mixer.init()
         pygame.mixer.music.load(audio.menu_music)
         pygame.mixer.music.play(-1)
-
-        # Creating 4 diffrent while loops to keep game running:
-        game_running = False
-        main_menu_running = True
-        gameover_menu_running = False
-        win_menu_running = False
 
         # Main menu while loop running the main menu till player clik on start
         # button, when player click on start, the game while loop start:
@@ -82,14 +74,28 @@ class Game:
                         pygame.mixer.music.load(audio.level_music)
                         pygame.mixer.music.play(-1)
                         main_menu_running = False
-                        game_running = True
+                        self.run_game()
 
             pygame.display.flip()
+
+    def run_game(self):
+        """ This method will run the game """
+
+        # Creating the display 640x600 pixels :
+        pygame.display.set_caption(config_game.WINDOWTITLE)
+        screen = pygame.display.set_mode(config_game.RES)
+
+        # Instancy all the necessaries classes :
+        level = Level()
+        level_dis = LevelDisplay()
+        inventory_dis = InventoryDisplay()
+        audio = Audio()
+        game_running = True
 
         # Game while loop running the game till player win or lose:
         while game_running is True:
 
-            # play littles sounds for these conditions:
+            # play sounds for these conditions:
             if level.pickobject is True:
                 sound_obj = pygame.mixer.Sound(audio.pick_up_sound)
                 sound_obj.play()
@@ -202,8 +208,7 @@ class Game:
                 pygame.mixer.music.load(audio.gameover_music)
                 pygame.mixer.music.play(-1)
                 game_running = False
-                gameover_menu_running = True
-                break
+                self.game_over()
 
             if level.gamewined is True:
                 pygame.mixer.music.stop()
@@ -211,10 +216,20 @@ class Game:
                 pygame.mixer.music.load(audio.win_fanfare)
                 pygame.mixer.music.play()
                 game_running = False
-                win_menu_running = True
-                break
+                self.win_menu()
 
             pygame.display.flip()
+
+    def game_over(self):
+        """ This method setup the game over menu"""
+
+        pygame.display.set_caption(config_game.WINDOWTITLE)
+        screen = pygame.display.set_mode(config_game.RES)
+
+        # Instancy all the necessaries classes :
+        gameover_dis = GameOver()
+        main_menu_dis = Main_menu()
+        gameover_menu_running = True
 
         while gameover_menu_running is True:
 
@@ -234,10 +249,19 @@ class Game:
                 elif event.type == pygame.MOUSEBUTTONDOWN:
                     if gameover_dis.gobutton_rect.collidepoint(event.pos):
                         gameover_menu_running = False
-                        main_menu_running = True
                         self.launch_game()
 
                 pygame.display.flip()
+
+    def win_menu(self):
+        """ This method setup the win menu """
+
+        pygame.display.set_caption(config_game.WINDOWTITLE)
+        screen = pygame.display.set_mode(config_game.RES)
+
+        win_dis = Win()
+        main_menu_dis = Main_menu()
+        win_menu_running = True
 
         while win_menu_running is True:
 
@@ -250,14 +274,13 @@ class Game:
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    gameover_menu_running = False
+                    win_menu_running = False
                     pygame.quit()
 
                 # Add a tryagain button if human player want to play again:
                 elif event.type == pygame.MOUSEBUTTONDOWN:
                     if win_dis.winbutton_rect.collidepoint(event.pos):
                         win_menu_running = False
-                        main_menu_running = True
                         self.launch_game()
 
             pygame.display.flip()

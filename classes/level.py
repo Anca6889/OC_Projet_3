@@ -6,6 +6,8 @@ from classes.player import Player
 from classes.guardian import Guardian
 from classes.config_classes import OBJECTS
 
+"""" This module generate the map and the characters /objects on the map """
+
 
 class Level:
     """ Class setting up the level map 15x15 cells, spawning the objects on

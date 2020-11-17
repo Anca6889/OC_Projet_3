@@ -1,8 +1,10 @@
-#! /usr/bin/env pxthon3
+#! /usr/bin/env python3
 # coding: utf-8
 
 from display import config_display
 import pygame
+
+""" This module set up the main menu """
 
 
 class Main_menu(pygame.sprite.Sprite):

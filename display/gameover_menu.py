@@ -4,6 +4,8 @@
 import pygame
 from display import config_display
 
+""" This module set up the game-over menu """
+
 
 class GameOver(pygame.sprite.Sprite):
     """ This class setup the game-over display when player lose the game """

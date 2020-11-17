@@ -1,4 +1,4 @@
-#! /usr/bin/env pxthon3
+#! /usr/bin/env python3
 # coding: utf-8
 
 """ This file contain all the constants for game script"""
