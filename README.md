@@ -50,20 +50,20 @@ INSTALLING AND ACTIVATE VIRTUALENV:
 Command to activate virtual environment:
 
 UNIX / MAC OS:
-    bash/zsh:
-        $ source <venv>/bin/activate
-    fish:
-        $ source <venv>/bin/activate.fish
-    csh/tcsh:
-        $ source <venv>/bin/activate.csh
-    PowerShell Core:
-        $ <venv>/bin/Activate.ps1
+bash/zsh:
+$ source venv/bin/activate
+fish:
+$ source venv/bin/activate.fish
+csh/tcsh:
+$ source venv/bin/activate.csh
+PowerShell Core:
+$ venv/bin/Activate.ps1
 
 WINDOWS:
-    cmd.exe:
-        C:\> <venv>\Scripts\activate.ba
-    PowerShell:
-        PS C:\> <venv>\Scripts\Activate.ps1
+cmd.exe:
+venv\Scripts\activate.ba
+PowerShell:
+venv\Scripts\Activate.ps1
 
 6) (optional) for desactivate type command: 
     deactivate
