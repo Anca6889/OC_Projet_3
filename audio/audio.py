@@ -1,9 +1,8 @@
-#! /usr/bin/env python3
+""" This module contain the music and sound of the game """
+# ! /usr/bin/env python3
 # coding: utf-8
 
 from audio import config_audio
-
-""" This module contain the music and sound of the game """
 
 
 class Audio:

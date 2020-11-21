@@ -1,32 +1,34 @@
-#! /usr/bin/env python3
-# coding: utf-8
-
-from display import config_display
-import pygame
-
 """ This module set up the map display """
 
+# ! /usr/bin/env python3
+# coding: utf-8
 
-class LevelDisplay(pygame.sprite.Sprite):
+from display import config_display as cg
+import pygame as pg
+
+
+class LevelDisplay(pg.sprite.Sprite):
     """ This class setup the level display """
 
     def __init__(self):
 
         super().__init__()
-        self.walls = pygame.image.load(
-            config_display.WALLS_DIS).convert_alpha()
-        self.path = pygame.image.load(config_display.PATH_DIS).convert_alpha()
-        self.ether = pygame.image.load(
-            config_display.ETHER_DIS).convert_alpha()
-        self.ether_rect = self.ether.get_rect()
-        self.needle = pygame.image.load(
-            config_display.NEEDLE_DIS).convert_alpha()
-        self.needle_rect = self.needle.get_rect()
-        self.tube = pygame.image.load(config_display.TUBE_DIS).convert_alpha()
-        self.tuber_rect = self.tube.get_rect()
-        self.guardian = pygame.image.load(
-            config_display.GUARDIAN_DIS).convert_alpha()
-        self.macgyver = pygame.image.load(
-            config_display.MACGYVER_DIS).convert_alpha()
-        self.macgyver_rect = self.macgyver.get_rect()
-        self.door = pygame.image.load(config_display.DOOR_DIS).convert_alpha()
+        self.data = {}
+        self.data_gen()
+
+    def data_gen(self):
+        """ this methode give images to all level elements """
+
+        self.data = {"walls": pg.image.load(
+            cg.WALLS_DIS).convert_alpha(),
+            "path": pg.image.load(cg.PATH_DIS).convert_alpha(),
+            "ether": pg.image.load(
+            cg.ETHER_DIS).convert_alpha(),
+            "needle": pg.image.load(
+            cg.NEEDLE_DIS).convert_alpha(),
+            "tube": pg.image.load(cg.TUBE_DIS).convert_alpha(),
+            "guardian": pg.image.load(
+            cg.GUARDIAN_DIS).convert_alpha(),
+            "macgyver": pg.image.load(
+            cg.MACGYVER_DIS).convert_alpha(),
+            "door": pg.image.load(cg.DOOR_DIS).convert_alpha()}

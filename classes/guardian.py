@@ -1,7 +1,7 @@
-#! /usr/bin/env python3
-# coding: utf-8
-
 """ This module set up the ennemy of the game """
+
+# ! /usr/bin/env python3
+# coding: utf-8
 
 
 class Guardian:

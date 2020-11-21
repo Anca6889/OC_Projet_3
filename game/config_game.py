@@ -1,7 +1,8 @@
-#! /usr/bin/env python3
+""" This file contain all the constants for game script"""
+
+# ! /usr/bin/env python3
 # coding: utf-8
 
-""" This file contain all the constants for game script"""
 
 WINDOWTITLE = "Help Macgyver to escape"
 RES = (640, 600)

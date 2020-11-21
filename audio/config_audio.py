@@ -1,7 +1,7 @@
-#! /usr/bin/env python3
-# coding: utf-8
-
 """ This file contain all the constants for the audio of the game"""
+
+# ! /usr/bin/env python3
+# coding: utf-8
 
 MENU_MUSIC = "ressource/1-02 Title.mp3"
 LEVEL_MUSIC = "ressource/1-13 Tundra Man Stage.mp3"

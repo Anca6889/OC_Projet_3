@@ -1,12 +1,12 @@
-#! /usr/bin/env python3
+"""" This module generate the map and the characters /objects on the map """
+
+# ! /usr/bin/env python3
 # coding: utf-8
 
 import random
 from classes.player import Player
 from classes.guardian import Guardian
 from classes.config_classes import OBJECTS
-
-"""" This module generate the map and the characters /objects on the map """
 
 
 class Level:
@@ -30,10 +30,8 @@ class Level:
         self.inventory = []
         self.grid_gen()
         self.set_objects()
-        self.gamewined = False
-        self.gamelost = False
-        self.pickobject = False
-        self.killgardian = False
+        self.getters = {}
+        self.get_info()
 
     def grid_gen(self):
         """ Generate a virtual grid with map_x and map_y coordonates
@@ -64,6 +62,15 @@ class Level:
         for key, obj in enumerate(OBJECTS):
             self.coord[self.path[key]] = obj
 
+    def get_info(self):
+        """ This fonctions setup bolean values for get informations
+            in the game script, pickobject and killguardian are
+            used for play a mini sound, gamewined and gamelost
+            will be used for switch to win or game-over menus """
+
+        self.getters = {"gamewined": False, "gamelost": False,
+                        "pickobject": False, "killguardian": False}
+
     def move(self, direction):
         """ Control the movements of the player on the map
             check what each cell contain and alow or not
@@ -81,8 +88,6 @@ class Level:
             new_coo = (self.macgyver.coo_y+1, self.macgyver.coo_x)
 
         # check what cell contain :
-        # (the variables self.pickobject and self.killguardian are
-        # used for play a sound in the main game)
         if new_coo in self.coord:
             new_cell_content = self.coord[new_coo]
 
@@ -91,7 +96,7 @@ class Level:
                 self.coord[new_coo] = 'M'
                 self.macgyver.coo_y = new_coo[0]
                 self.macgyver.coo_x = new_coo[1]
-                self.pickobject = False
+                self.getters["pickobject"] = False
 
             if new_cell_content in OBJECTS:
                 self.coord[(self.macgyver.coo_y, self.macgyver.coo_x)] = "-"
@@ -99,7 +104,7 @@ class Level:
                 self.coord[new_coo] = 'M'
                 self.macgyver.coo_y = new_coo[0]
                 self.macgyver.coo_x = new_coo[1]
-                self.pickobject = True
+                self.getters["pickobject"] = True
 
             if new_cell_content == 'G':
                 if len(self.inventory) == 3:
@@ -108,28 +113,17 @@ class Level:
                     self.coord[new_coo] = 'M'
                     self.macgyver.coo_y = new_coo[0]
                     self.macgyver.coo_x = new_coo[1]
-                    self.pickobject = False
-                    self.killgardian = True
-
+                    self.getters["pickobject"] = False
+                    self.getters["killguardian"] = True
                 else:
-                    self.lose_game()
+                    self.getters["gamelost"] = True
 
             if new_cell_content == '1':
                 self.coord[(self.macgyver.coo_y, self.macgyver.coo_x)] = "-"
                 self.coord[new_coo] = 'M'
                 self.macgyver.coo_y = new_coo[0]
                 self.macgyver.coo_x = new_coo[1]
-                self.pickobject = False
-                self.win_game()
+                self.getters["pickobject"] = False
+                self.getters["gamewined"] = True
         else:
             pass
-
-    def win_game(self):
-        """ Win the game """
-
-        self.gamewined = True
-
-    def lose_game(self):
-        """ Lose the game """
-
-        self.gamelost = True
