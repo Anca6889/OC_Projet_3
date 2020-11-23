@@ -71,24 +71,21 @@ class Game:
 
         self.screen.blit(
             self.data["menu"].background, cg.MAIN_MENU_POS)
-        self.screen.blit(self.data["menu"].pbut,
-                         (self.data["menu"].pbut_rect))
+        self.screen.blit(self.data["menu"].pbut, (self.data["menu"].pbut_rect))
 
     def gameover_menu_gen(self):
         """ Generate the game-over menu display """
 
         self.screen.blit(
             self.data["go"].background, cg.MAIN_MENU_POS)
-        self.screen.blit(self.data["go"].gbut,
-                         (self.data["go"].gbut_rect))
+        self.screen.blit(self.data["go"].gbut, (self.data["go"].gbut_rect))
 
     def win_menu_gen(self):
         """ Generate the win menu display """
 
         self.screen.blit(
             self.data["win"].background, cg.MAIN_MENU_POS)
-        self.screen.blit(self.data["win"].wbut,
-                         (self.data["win"].wbut_rect))
+        self.screen.blit(self.data["win"].wbut, (self.data["win"].wbut_rect))
 
     def game_gen(self):
         """ Generate the game display """
@@ -153,16 +150,14 @@ class Game:
 
         # Display the inventory on the left side with
         # transparents objects (unpicked):
-        self.screen.blit(self.data["inventory"].inventory,
-                         cg.INVENTORY_POS)
+        self.screen.blit(self.data["inventory"].inventory, cg.INVENTORY_POS)
         self.screen.blit(
             self.data["inventory"].ethertrans, cg.ETHER_POS)
         self.screen.blit(
             self.data["inventory"].needletrans, cg.NEEDLE_POS)
         self.screen.blit(
             self.data["inventory"].tubetrans, cg.TUBE_POS)
-        self.screen.blit(self.data["inventory"].startrans,
-                         cg.STAR_SYRINGE_POS)
+        self.screen.blit(self.data["inventory"].startrans, cg.STAR_SYRINGE_POS)
 
         # When an object is picked, add the colourfull picture of
         # the object on the transparent picture (picked)
