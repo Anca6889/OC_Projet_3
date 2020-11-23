@@ -3,8 +3,8 @@
 # ! /usr/bin/env python3
 # coding: utf-8
 
-from display import config_display
 import pygame
+from display import config_display
 
 
 class InventoryDisplay(pygame.sprite.Sprite):

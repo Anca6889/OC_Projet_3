@@ -3,8 +3,8 @@
 # ! /usr/bin/env python3
 # coding: utf-8
 
-from display import config_display as cg
 import pygame as pg
+from display import config_display as cg
 
 
 class Win(pg.sprite.Sprite):

@@ -3,6 +3,7 @@
 # ! /usr/bin/env python3
 # coding: utf-8
 
+import pygame as pg
 from classes.level import Level
 from display.level_display import LevelDisplay
 from display.inventory_display import InventoryDisplay
@@ -11,7 +12,6 @@ from display.gameover_menu import GameOver
 from display.win_menu import Win
 from audio.audio import Audio
 from game import config_game as cg
-import pygame as pg
 
 
 class Game:
