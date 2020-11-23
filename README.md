@@ -27,17 +27,10 @@ Hope you will have fun !
 
 REQUIREMENTS:
 
-* Pygame 2.0
 * virtualenv
+* Pygame 2.0
 
 ############################################################################
-
-INSTALLING PYGAME:
-
-1) Open your favorite terminal
-2) Type command: pip install pygame
-
--------------------------------------
 
 INSTALLING AND ACTIVATE VIRTUALENV:
 
@@ -48,7 +41,7 @@ pip install pygame
 
 3) Go to the base repository with command: 
 
-    cd /path/to/base etc....
+cd /path/to/base etc....
 
 4) Create virtual env with command: 
 
@@ -90,12 +83,24 @@ venv\Scripts\Activate.ps1
 
 deactivate
 
+-------------------------------------
+
+INSTALLING PYGAME:
+
+1) Open your favorite terminal
+2) Type command: pip install pygame
+
+
+
 ############################################################################
 
 HOW TO LAUCH THE GAME ?
 
 1) Open your favorite terminal
-2) Go to the base repository with command: 
-    cd /path/to/base etc....
-3) Type command: 
-    python main.py
+2) Go to the base repository with command:
+
+cd /path/to/base etc....
+
+3) Type command:
+
+python main.py
