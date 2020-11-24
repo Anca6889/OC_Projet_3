@@ -37,7 +37,7 @@ INSTALLING AND ACTIVATE VIRTUALENV:
 1) Open your favorite terminal
 2) Type command: 
 
-pip install pygame
+pip install virtualenv
 
 3) Go to the base repository with command: 
 
